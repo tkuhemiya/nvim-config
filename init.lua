@@ -1,44 +1,33 @@
--- todo
--- https://github.com/nvim-telescope/telescope.nvim
--- https://github.com/nvim-telescope/telescope-ui-select.nvim
--- https://github.com/L3MON4D3/LuaSnip -- for snippets
--- https://cmp.saghen.dev/installation
-
 -- :tabnew, :tabclose, :tabnext -- for tabs
 
-vim.cmd("colorscheme lucid2")
 
-vim.o.number = true
-vim.o.relativenumber = true
-vim.o.cursorline = true
-vim.o.signcolumn = "yes"
-vim.o.pumheight = 10
-vim.o.winborder = "rounded"
-vim.o.list = true
-vim.o.ignorecase = true
-vim.o.smartcase = true
-vim.o.smartindent = true
-vim.o.undofile = true
-vim.o.undolevels = 100
-vim.o.swapfile = false
-vim.opt.expandtab = true
-vim.opt.tabstop = 2
-vim.opt.shiftwidth = 2
-vim.opt.softtabstop = 2
-
+require('options')
 
 vim.pack.add({
-  { src = "https://github.com/nvim-mini/mini.pick" },
-  { src = "https://github.com/nvim-treesitter/nvim-treesitter",        version = "main" },
-  { src = "https://github.com/nvim-lua/plenary.nvim" }, -- dependency
-  { src = "https://github.com/nvim-telescope/telescope.nvim" },
-  { src = "https://github.com/nvim-telescope/telescope-ui-select.nvim" },
+  { src = "https://github.com/nvim-mini/mini.nvim" },
   { src = "https://github.com/neovim/nvim-lspconfig" },
   { src = "https://github.com/mason-org/mason.nvim" },
-  { src = "https://github.com/saghen/blink.cmp" }
+  { src = "https://github.com/mason-org/mason-lspconfig.nvim" },
 })
 
-vim.lsp.enable({ "lua_ls"})
+require('mason').setup()
+require('mason-lspconfig').setup({
+  ensure_installed = { 'ts_ls' },
+})
 
-require('plugin')
+require('mini.completion').setup({
+  window = {
+    info = { border = 'single' },
+    signature = { border = 'single' },
+  },
+  lsp_completion = {
+    source_func = 'omnifunc',
+    auto_setup = true,
+  },
+})
+
+capabilities = vim.lsp.protocol.make_client_capabilities(),
+
+
+require('lsp')
 require('keymap')

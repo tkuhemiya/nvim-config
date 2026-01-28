@@ -23,31 +23,10 @@ map('n', '<leader>m', '<Cmd>:Mason<CR>')
 map('n', '<leader>li', ':LspInfo<CR>')
 map('n', '<leader>lf', vim.lsp.buf.format)
 
+vim.keymap.set('n', 'gd', vim.lsp.buf.definition, { desc = 'Go to definition' })
+vim.keymap.set('n', 'K', vim.lsp.buf.hover, { desc = 'Hover documentation' })
+vim.keymap.set('n', '<leader>rn', vim.lsp.buf.rename, { desc = 'Rename symbol' })
 
-local function pack_clean()
-  local active_plugins = {}
-  local unused_plugins = {}
+vim.keymap.set('i', '<C-Space>', function() require('mini.completion').complete() end, {})
+vim.keymap.set('i', '<Tab>', function() require('mini.completion').complete() end, {})
 
-  for _, plugin in ipairs(vim.pack.get()) do
-    active_plugins[plugin.spec.name] = plugin.active
-  end
-
-  for _, plugin in ipairs(vim.pack.get()) do
-    if not active_plugins[plugin.spec.name] then
-      table.insert(unused_plugins, plugin.spec.name)
-    end
-  end
-
-  if #unused_plugins == 0 then
-    print("No unused plugins.")
-    return
-  end
-
-  local choice = vim.fn.confirm("Remove unused plugins?", "&Yes\n&No", 2)
-  if choice == 1 then
-    vim.pack.del(unused_plugins)
-  end
-end
-
-
-map({ 'n' }, '<leader>pc', pack_clean)

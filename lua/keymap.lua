@@ -30,3 +30,6 @@ vim.keymap.set('n', '<leader>rn', vim.lsp.buf.rename, { desc = 'Rename symbol' }
 vim.keymap.set('i', '<C-Space>', function() require('mini.completion').complete() end, {})
 vim.keymap.set('i', '<Tab>', function() require('mini.completion').complete() end, {})
 
+vim.keymap.set('n', '<Tab>', ':bnext<CR>', { desc = 'Next Buffer' })
+vim.keymap.set('n', '<S-Tab>', ':bprev<CR>', { desc = 'Prev Buffer' })
+vim.keymap.set('n', '<Leader><Tab>', ':bdelete<CR>', { desc = 'Close Buffer' })

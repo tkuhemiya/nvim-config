@@ -1,57 +1,65 @@
-require "mini.pick".setup()
-
-require "mason".setup({
-  registries = {
-    "github:mason-org/mason-registry",
-  },
+require('mini.completion').setup({
+    window = {
+        info = { border = 'single' },
+        signature = { border = 'single' },
+    },
+    lsp_completion = {
+        source_func = 'omnifunc',
+        auto_setup = true,
+    },
 })
 
-local telescope = require "telescope"
-telescope.setup({
-  defaults = {
-    preview = { treesitter = false },
-    color_devicons = true,
-    sorting_strategy = "ascending",
-    borderchars = {
-      "─", -- top
-      "│", -- right
-      "─", -- bottom
-      "│", -- left
-      "┌", -- top-left
-      "┐", -- top-right
-      "┘", -- bottom-right
-      "└", -- bottom-left
+require('mini.cmdline').setup({
+    window = {
+        config = function()
+            local height = vim.o.lines
+            local width = vim.o.columns
+            return {
+                anchor = 'NW',
+                height = 1,
+                width = math.floor(width * 0.6),
+                row = math.floor(height * 0.4), -- 40% down from the top
+                col = math.floor(width * 0.2),  -- 20% in from the left
+                border = 'rounded',
+            }
+        end,
     },
-    path_displays = { "smart" },
-    layout_config = {
-      height = 100,
-      width = 400,
-      prompt_position = "top",
-      preview_cutoff = 40,
-    }
-  }
+    autopeek = {
+        enable = true,
+        n_context = 1,
+        predicate = nil,
+    },
 })
-telescope.load_extension("ui-select")
 
-require("blink.cmp").setup({
-  keymap = {
-    ["<Tab>"] = { "select_next", "fallback" },
-    ["<S-Tab>"] = { "select_prev", "fallback" },
-    ["<CR>"] = { "accept", "fallback" },
-  },
-  appearance = {
-    nerd_font_variant = "mono",
-    use_nvim_cmp_as_default = true,
-  },
-  completion = {
-    documentation = {
-      auto_show = false,
+require('mini.diff').setup()
+-- :h MiniDiff-overview
+-- :h MiniDiff-source-specification
+-- :h MiniDiff-hunk-specification
+-- :h MiniDiff-diff-summary
+
+require('mini.files').setup({
+    content = {
+        filter = function(entry)
+            return entry.name ~= '.git' and entry.name ~= 'node_modules'
+        end,
     },
-    menu = {
-      border = "rounded",
+    mappings = {
+        synchronize = '=',
+        go_in       = 'l',
+        go_in_plus  = '<CR>',
     },
-  },
-  sources = {
-    default = { "lsp", "path", "snippets", "buffer" },
-  },
+    windows = {
+        -- max_number = math.huge,
+        preview = false,
+        width_focus = 50,
+        width_nofocus = 15,
+        width_preview = 25,
+    },
+})
+
+require('mini.pick').setup()
+
+require('mini.tabline').setup({
+    -- set_vim_settings = true, -- Auto-sets 'showtabline' to 2
+    -- tabpage_section = 'right',
 })

@@ -19,5 +19,4 @@ vim.opt.scrolloff = 8
 vim.opt.completeopt = { "menuone", "popup", "noinsert" }
 
 vim.opt.termguicolors = true
-vim.opt.guicursor = "i:block"
 vim.opt.expandtab = true

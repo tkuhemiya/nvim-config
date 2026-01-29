@@ -29,8 +29,8 @@ map("n", "<leader>cd", '<cmd>lua vim.fn.chdir(vim.fn.expand("%:p:h"))<CR>')
 map('n', 'gd', vim.lsp.buf.definition, { desc = 'Go to definition' })
 map('n', 'K', vim.lsp.buf.hover, { desc = 'Hover documentation' })
 
-map('i', '<C-Space>', function() require('mini.completion').complete() end, {})
-map('i', '<Tab>', function() require('mini.completion').complete() end, {})
+--map('i', '<C-Space>', function() require('mini.completion').complete() end, {})
+--map('i', '<Tab>', function() require('mini.completion').complete() end, {})
 
 map("v", "<", "<gv")
 map("v", ">", ">gv")

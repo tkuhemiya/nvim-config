@@ -11,7 +11,6 @@ vim.pack.add({
     { src = "https://github.com/WhoIsSethDaniel/mason-tool-installer.nvim" },
 })
 
-require('options')
 require('lsp')
 require('plugin')
 require('keymap')

@@ -1,4 +1,9 @@
 require('mini.completion').setup({
+    delay = { completion = 10, info = 100, signature = 10 },
+    mappings = {
+        force_twopt = '<C-Space>',
+    },
+    
     window = {
         info = { border = 'single' },
         signature = { border = 'single' },
@@ -7,7 +12,17 @@ require('mini.completion').setup({
         source_func = 'omnifunc',
         auto_setup = true,
     },
+
 })
+
+local keymap = vim.keymap.set
+local check_backspace = function()
+  local col = vim.fn.col('.') - 1
+  return col == 0 or vim.fn.getline('.'):sub(col, col):match('%s')
+end
+keymap('i', '<Tab>', [[pumvisible() ? "\<C-n>" : "\<Tab>"]], { expr = true })
+keymap('i', '<S-Tab>', [[pumvisible() ? "\<C-p>" : "\<S-Tab>"]], { expr = true })
+keymap('i', '<CR>', [[pumvisible() ? "\<C-y>" : "\<CR>"]], { expr = true })
 
 require('mini.cmdline').setup({
     autopeek = {

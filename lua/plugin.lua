@@ -10,20 +10,6 @@ require('mini.completion').setup({
 })
 
 require('mini.cmdline').setup({
-    window = {
-        config = function()
-            local height = vim.o.lines
-            local width = vim.o.columns
-            return {
-                anchor = 'NW',
-                height = 1,
-                width = math.floor(width * 0.6),
-                row = math.floor(height * 0.4), -- 40% down from the top
-                col = math.floor(width * 0.2),  -- 20% in from the left
-                border = 'rounded',
-            }
-        end,
-    },
     autopeek = {
         enable = true,
         n_context = 1,
@@ -58,9 +44,8 @@ require('mini.files').setup({
 })
 
 require('mini.pick').setup()
+--require('mini.icons').setup()
+--require('mini.tabline').setup({})
 
-local starter = require('mini.starter')
-starter.setup({
-    -- set_vim_settings = true, -- Auto-sets 'showtabline' to 2
-    -- tabpage_section = 'right',
-})
+--require('mini.cursorword').setup()
+--require('mini.operators').setup()

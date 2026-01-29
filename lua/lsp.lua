@@ -3,28 +3,32 @@ require('mason-lspconfig').setup({
     ensure_installed = { 'ts_ls' },
 })
 
-local lspconfig = require('lspconfig')
-
-lspconfig.ts_ls.setup({
-    on_attach = function(client, bufnr)
-        vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
+vim.api.nvim_create_autocmd('LspAttach', {
+    callback = function(args)
+        local bufnr = args.buf
         local opts = { buffer = bufnr }
+
         vim.keymap.set('n', 'gd', vim.lsp.buf.definition, opts)
         vim.keymap.set('n', 'K', vim.lsp.buf.hover, opts)
         vim.keymap.set('n', '<leader>rn', vim.lsp.buf.rename, opts)
         vim.keymap.set('n', '<leader>ca', vim.lsp.buf.code_action, opts)
-        vim.keymap.set('n', '<leader>f', vim.lsp.buf.format, opts)
+        vim.keymap.set('n', '<leader>f', function() vim.lsp.buf.format({ async = true }) end, opts)
     end,
-    capabilities = vim.lsp.protocol.make_client_capabilities(),
+})
+
+vim.lsp.config('*', {
+    root_markers = { '.git' },
+    capabilities = require('mini.completion').get_lsp_capabilities(),
+})
+
+vim.lsp.config('ts_ls', {
+    capabilities = require('mini.completion').get_lsp_capabilities(),
     settings = {
         completions = {
             completeFunctionCalls = true,
         },
     },
-    filetypes = {
-        'javascript', 'javascriptreact', 'javascript.jsx',
-        'typescript', 'typescriptreact', 'typescript.tsx'
-    },
+    root_markers = { 'package.json', 'tsconfig.json', '.git' },
     init_options = {
         preferences = {
             disableSuggestions = false,
@@ -32,5 +36,7 @@ lspconfig.ts_ls.setup({
             quotePreference = 'auto',
         },
     },
-    root_dir = lspconfig.util.root_pattern('package.json', 'tsconfig.json', '.git'),
 })
+
+vim.lsp.enable('ts_ls')
+vim.lsp.enable('html')

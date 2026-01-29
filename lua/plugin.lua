@@ -59,7 +59,8 @@ require('mini.files').setup({
 
 require('mini.pick').setup()
 
-require('mini.tabline').setup({
+local starter = require('mini.starter')
+starter.setup({
     -- set_vim_settings = true, -- Auto-sets 'showtabline' to 2
     -- tabpage_section = 'right',
 })

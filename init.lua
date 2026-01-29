@@ -5,13 +5,21 @@ require('options')
 
 vim.pack.add({
     { src = "https://github.com/nvim-mini/mini.nvim" },
+    { src = "https://github.com/catppuccin/nvim" },
 
     { src = "https://github.com/mason-org/mason.nvim" },
     { src = "https://github.com/neovim/nvim-lspconfig" },
     { src = "https://github.com/mason-org/mason-lspconfig.nvim" },
 })
 
+require('options')
 require('lsp')
 require('plugin')
-require('options')
 require('keymap')
+
+require("catppuccin").setup({
+    flavour = "mocha",
+    transparent_background = true,
+})
+vim.cmd.colorscheme "catppuccin"
+require('starter')

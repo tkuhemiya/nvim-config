@@ -3,7 +3,7 @@ require('options')
 vim.pack.add({
     { src = "https://github.com/nvim-mini/mini.nvim" },
 
-    { src = "https://github.com/catppuccin/nvim" },
+    { src = "https://github.com/Mofiqul/dracula.nvim" },
 
     { src = "https://github.com/mason-org/mason.nvim" },
     { src = "https://github.com/neovim/nvim-lspconfig" },
@@ -16,9 +16,10 @@ require('plugin')
 require('keymap')
 require('autocmd')
 
-require("catppuccin").setup({
-    flavour = "mocha",
-    transparent_background = true,
+require("dracula").setup({
+  colors = {
+    bg = "#131313",
+  }
 })
-vim.cmd.colorscheme "catppuccin"
+vim.cmd.colorscheme "dracula"
 require('starter')

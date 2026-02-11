@@ -21,6 +21,7 @@ map({ 'n', 'v' }, '<leader>y', '"+y')
 map({ 'n', 'v' }, '<leader>p', '"+p')
 
 map('n', '<leader>m', '<Cmd>:Mason<CR>')
+map('n', '<C-a>', '<Cmd>:%yank +<CR>', { desc = 'Yank entire buffer into " register' })
 map('n', '<leader>li', ':LspInfo<CR>')
 map('n', '<leader>lf', vim.lsp.buf.format)
 map("t", "<Esc>", "<C-\\><C-N>") -- Exit terminal mode

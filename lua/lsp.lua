@@ -2,7 +2,7 @@ require('mason').setup()
 require('mason-lspconfig').setup({
 })
 require('mason-tool-installer').setup({
-    ensure_installed = { 'ts_ls' },
+    ensure_installed = { 'ts_ls', 'rust_analyzer' },
 })
 
 vim.api.nvim_create_autocmd('LspAttach', {
@@ -40,4 +40,15 @@ vim.lsp.config('ts_ls', {
     },
 })
 
+vim.lsp.config('rust_analyzer', {
+    capabilities = require('mini.completion').get_lsp_capabilities(),
+    root_markers = { 'Cargo.toml', '.git' },
+    settings = {
+        ['rust-analyzer'] = {
+            check = { command = 'clippy' },
+        },
+    },
+})
+
 vim.lsp.enable('ts_ls')
+vim.lsp.enable('rust_analyzer')

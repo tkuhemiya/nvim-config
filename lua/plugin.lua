@@ -63,7 +63,34 @@ require('mini.files').setup({
     },
 })
 
-require('mini.pick').setup()
+require('telescope').setup({
+    defaults = {
+        layout_strategy = 'horizontal',
+        layout_config = {
+            horizontal = {
+                preview_width = 0.5,
+            },
+        },
+        vimgrep_arguments = {
+            'rg',
+            '--color=never',
+            '--no-heading',
+            '--with-filename',
+            '--line-number',
+            '--column',
+            '--smart-case',
+            '--hidden',
+            '--glob', '!.git/*',
+        },
+        file_ignore_patterns = { 'node_modules/' },
+        preview = {
+            enable = true,
+            timeout = 100,
+            filesize_limit = 1,
+            treesitter = true,
+        },
+    },
+})
 
 --require('mini.cursorword').setup()
 --require('mini.operators').setup()
@@ -71,7 +98,7 @@ require('mini.pick').setup()
 local status, ts = pcall(require, 'nvim-treesitter.configs')
 if status then
     ts.setup({
-        ensure_installed = { "go", "gomod", "gowork", "gosum", "lua", "typescript", "javascript" },
+        ensure_installed = { "go", "gomod", "gowork", "gosum", "lua", "typescript", "javascript", "rust" },
         highlight = {
             enable = true,
             additional_vim_regex_highlighting = false,

@@ -5,9 +5,9 @@ vim.g.mapleader = " "
 map('n', '<leader>w', '<Cmd>write<CR>')
 map('i', 'jk', '')
 map('n', '<leader>q', '<Cmd>:quit<CR>')
-map('n', '<leader>h', ':Pick help<CR>')
-map('n', '<leader>f', ':Pick files<CR>')
-map('n', '<leader>g', ':Pick grep<CR>')
+map('n', '<leader>h', ':Telescope help_tags<CR>')
+map('n', '<leader>f', ':Telescope find_files<CR>')
+map('n', '<leader>g', ':Telescope live_grep<CR>')
 map('n', '<leader>r', ':lua MiniFiles.open()<CR>')
 map('n', 'Q', '@@')
 

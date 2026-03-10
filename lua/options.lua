@@ -1,5 +1,5 @@
 vim.opt.number = true
-vim.opt.relativenumber = true
+vim.opt.relativenumber = false
 vim.opt.cursorline = true
 vim.opt.signcolumn = "yes"
 vim.opt.pumheight = 10
@@ -20,7 +20,7 @@ vim.opt.completeopt = { "menuone", "popup", "nearest", "noinsert" }
 vim.opt.splitright = true
 vim.opt.splitbelow = true
 vim.opt.updatetime = 200
-vim.opt.timeoutlen = 300
+vim.opt.timeoutlen = 1000
 vim.opt.inccommand = "split"
 vim.opt.pummaxwidth = 80
 vim.opt.pumborder = "rounded"

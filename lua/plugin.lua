@@ -87,6 +87,10 @@ require('mini.files').setup({
         width_nofocus = 15,
         width_preview = 25,
     },
+    options = {
+        permanent_delete = true,
+        use_as_default_explorer = false,
+    },
 })
 
 require('telescope').setup({

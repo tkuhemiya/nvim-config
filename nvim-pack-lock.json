@@ -32,6 +32,14 @@
       "rev": "96ee37d07043aeed90ae6ae32733b2d0db8f1c13",
       "src": "https://github.com/nvim-mini/mini.pick"
     },
+    "neo-tree.nvim": {
+      "rev": "9d6826582a3e8c84787bd7355df22a2812a1ad59",
+      "src": "https://github.com/nvim-neo-tree/neo-tree.nvim"
+    },
+    "nui.nvim": {
+      "rev": "de740991c12411b663994b2860f1a4fd0937c130",
+      "src": "https://github.com/MunifTanjim/nui.nvim"
+    },
     "nvim": {
       "rev": "beaf41a30c26fd7d6c386d383155cbd65dd554cd",
       "src": "https://github.com/catppuccin/nvim"
@@ -59,6 +67,10 @@
     "telescope.nvim": {
       "rev": "b4da76be54691e854d3e0e02c36b0245f945c2c7",
       "src": "https://github.com/nvim-telescope/telescope.nvim"
+    },
+    "vague.nvim": {
+      "rev": "2baf167930cf2fa9c6aa7de08a4522e9fb527b33",
+      "src": "https://github.com/vague-theme/vague.nvim"
     },
     "vim": {
       "rev": "d4b0823100c702af127cba8dd5595a8f599041ec",

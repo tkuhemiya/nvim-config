@@ -1,5 +1,27 @@
 local map = vim.keymap.set
 
+local function search_visual_selection()
+    local start_pos = vim.fn.getpos('v')
+    local end_pos = vim.fn.getpos('.')
+    local start_row, start_col = start_pos[2], start_pos[3]
+    local end_row, end_col = end_pos[2], end_pos[3]
+
+    if start_row > end_row or (start_row == end_row and start_col > end_col) then
+        start_row, end_row = end_row, start_row
+        start_col, end_col = end_col, start_col
+    end
+
+    local lines = vim.api.nvim_buf_get_text(0, start_row - 1, start_col - 1, end_row - 1, end_col, {})
+    local text = table.concat(lines, '\n')
+    if text == '' then
+        return
+    end
+
+    local pattern = vim.fn.escape(text, [[\/]])
+    pattern = pattern:gsub('\n', [[\n]])
+    vim.fn.feedkeys('/' .. pattern, 'n')
+end
+
 map('n', '<leader>w', '<Cmd>write<CR>')
 map('n', '<leader>q', '<Cmd>quit<CR>')
 map('n', '<leader>h', '<Cmd>Telescope help_tags<CR>')
@@ -7,41 +29,6 @@ map('n', '<leader>f', '<Cmd>Telescope find_files<CR>')
 map('n', '<leader>g', '<Cmd>Telescope live_grep<CR>')
 map('n', 'Q', '@@')
 
-local neotree_initialized = false
-local function ensure_neotree()
-    if not neotree_initialized then
-        local ok, neotree = pcall(require, 'neo-tree')
-        if not ok then
-            vim.notify('neo-tree.nvim is not available', vim.log.levels.ERROR)
-            return false
-        end
-
-        neotree.setup({
-            filesystem = {
-                hijack_netrw_behavior = "disabled",
-            },
-        })
-        neotree_initialized = true
-    end
-
-    return true
-end
-
-local function toggle_neotree()
-    if not ensure_neotree() then
-        return
-    end
-
-    vim.cmd('Neotree toggle')
-end
-
-map('n', '<C-d>', toggle_neotree, { desc = 'Toggle Neo-tree' })
-map('n', '<C-h>', function()
-    if not ensure_neotree() then
-        return
-    end
-    vim.cmd('Neotree focus')
-end, { desc = 'Focus Neo-tree' })
 map('n', '-', function()
     MiniFiles.open(vim.api.nvim_buf_get_name(0), true)
 end, { desc = 'Open explorer at current file' })
@@ -67,6 +54,7 @@ map("n", "<leader>cw", '<Cmd>cd %:p:h<CR>', { desc = "Set cwd to current file" }
 
 map("v", "<", "<gv")
 map("v", ">", ">gv")
+map('x', '/', search_visual_selection, { desc = 'Search visual selection' })
 
 map("i", ",", ",<c-g>u")
 map("i", ".", ".<c-g>u")

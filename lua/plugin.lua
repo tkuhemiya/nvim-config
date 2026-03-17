@@ -93,12 +93,19 @@ require('mini.files').setup({
     },
 })
 
+local telescope_actions = require('telescope.actions')
 require('telescope').setup({
     defaults = {
         layout_strategy = 'horizontal',
         layout_config = {
             horizontal = {
                 preview_width = 0.5,
+            },
+        },
+        mappings = {
+            i = {
+                ['<Up>'] = telescope_actions.cycle_history_prev,
+                ['<Down>'] = telescope_actions.cycle_history_next,
             },
         },
         vimgrep_arguments = {

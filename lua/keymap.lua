@@ -38,7 +38,7 @@ map('n', '<leader>d', function()
     end
 end, { desc = 'Toggle MiniFiles explorer' })
 
-map({ 'n', 'v' }, '<leader>z', '1z=', { silent = true })
+map('n', '<leader>z', 'za', { desc = 'Toggle fold' })
 map('n', 'U', '<C-r>')
 
 

@@ -1,6 +1,6 @@
 local capabilities = require('mini.completion').get_lsp_capabilities()
-local servers = { 'ts_ls', 'rust_analyzer', 'clangd', 'gopls' }
-local mason_tools = { 'typescript-language-server', 'rust-analyzer', 'clangd', 'gopls' }
+local servers = { 'ts_ls', 'rust_analyzer', 'clangd', 'gopls', 'pyright' }
+local mason_tools = { 'typescript-language-server', 'rust-analyzer', 'clangd', 'gopls', 'pyright' }
 
 require('mason').setup()
 require('mason-lspconfig').setup({
@@ -76,6 +76,11 @@ vim.lsp.config('clangd', {
 vim.lsp.config('gopls', {
     capabilities = capabilities,
     root_markers = { 'go.mod', 'go.work', '.git' },
+})
+
+vim.lsp.config('pyright', {
+    capabilities = capabilities,
+    root_markers = { 'pyproject.toml', 'setup.py', 'setup.cfg', 'requirements.txt', '.git' },
 })
 
 for _, server in ipairs(servers) do

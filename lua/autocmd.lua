@@ -104,3 +104,20 @@ autocmd("BufWritePre", {
     vim.lsp.buf.format({async = false})
   end,
 })
+
+local recording_status_group = augroup('RecordingStatusline', { clear = true })
+autocmd('RecordingEnter', {
+  group = recording_status_group,
+  callback = function()
+    vim.cmd('redrawstatus')
+  end,
+})
+
+autocmd('RecordingLeave', {
+  group = recording_status_group,
+  callback = function()
+    vim.schedule(function()
+      vim.cmd('redrawstatus')
+    end)
+  end,
+})

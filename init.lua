@@ -30,14 +30,4 @@ require("vague").setup({
   italic = true,
 })
 vim.cmd.colorscheme "vague"
-vim.o.laststatus = 2
-_G.macro_recording = function()
-  local reg = vim.fn.reg_recording()
-  if reg == "" then
-    return ""
-  end
-  return " %#WarningMsg#REC @" .. reg .. "%*"
-end
-
-vim.o.statusline = " %F %m%r%h%w%{v:lua.macro_recording()} %= %l:%c "
 vim.o.cmdheight = 0

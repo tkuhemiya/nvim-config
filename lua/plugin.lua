@@ -15,6 +15,37 @@ require('mini.completion').setup({
 
 })
 
+local mini_statusline = require('mini.statusline')
+mini_statusline.setup({
+    use_icons = true,
+    content = {
+        active = function()
+            local mode, mode_hl = mini_statusline.section_mode({ trunc_width = 120 })
+            local git = mini_statusline.section_git({ trunc_width = 100 })
+            local diff = mini_statusline.section_diff({ trunc_width = 100 })
+            local diagnostics = mini_statusline.section_diagnostics({ trunc_width = 100 })
+            local lsp = mini_statusline.section_lsp({ trunc_width = 100 })
+            local filename = mini_statusline.section_filename({ trunc_width = 140 })
+            local fileinfo = mini_statusline.section_fileinfo({ trunc_width = 120 })
+            local location = mini_statusline.section_location({ trunc_width = 80 })
+
+            local recording_register = vim.fn.reg_recording()
+            local macro = recording_register ~= '' and ('REC @' .. recording_register) or ''
+
+            return mini_statusline.combine_groups({
+                { hl = mode_hl, strings = { mode } },
+                { hl = 'MiniStatuslineDevinfo', strings = { git, diff, diagnostics, lsp, macro } },
+                '%<',
+                { hl = 'MiniStatuslineFilename', strings = { filename } },
+                '%=',
+                { hl = 'MiniStatuslineFileinfo', strings = { fileinfo } },
+                { hl = mode_hl, strings = { location } },
+            })
+        end,
+    },
+})
+vim.o.laststatus = 3
+
 local keymap = vim.keymap.set
 keymap('i', '<Tab>', [[pumvisible() ? "\<C-n>" : "\<Tab>"]], { expr = true })
 keymap('i', '<S-Tab>', [[pumvisible() ? "\<C-p>" : "\<S-Tab>"]], { expr = true })

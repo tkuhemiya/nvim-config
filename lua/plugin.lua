@@ -150,7 +150,7 @@ require('telescope').setup({
             '--hidden',
             '--glob', '!.git/*',
         },
-        file_ignore_patterns = { 'node_modules/' },
+        file_ignore_patterns = { 'node_modules/', '.next/', 'dist/', 'coverage/' },
         preview = {
             enable = true,
             timeout = 100,
@@ -166,7 +166,22 @@ require('telescope').setup({
 local status, ts = pcall(require, 'nvim-treesitter.configs')
 if status then
     ts.setup({
-        ensure_installed = { "go", "gomod", "gowork", "gosum", "lua", "typescript", "javascript", "rust" },
+        ensure_installed = {
+            "go",
+            "gomod",
+            "gowork",
+            "gosum",
+            "lua",
+            "typescript",
+            "tsx",
+            "javascript",
+            "html",
+            "css",
+            "scss",
+            "json",
+            "yaml",
+            "rust",
+        },
         auto_install = true,
         highlight = {
             enable = true,

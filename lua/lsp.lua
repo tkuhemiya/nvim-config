@@ -1,6 +1,30 @@
 local capabilities = require('mini.completion').get_lsp_capabilities()
-local servers = { 'ts_ls', 'rust_analyzer', 'clangd', 'gopls', 'pyright' }
-local mason_tools = { 'typescript-language-server', 'rust-analyzer', 'clangd', 'gopls', 'pyright' }
+local servers = {
+    'vtsls',
+    'eslint',
+    'tailwindcss',
+    'html',
+    'cssls',
+    'jsonls',
+    'emmet_language_server',
+    'rust_analyzer',
+    'clangd',
+    'gopls',
+    'pyright',
+}
+local mason_tools = {
+    'vtsls',
+    'eslint-lsp',
+    'tailwindcss-language-server',
+    'html-lsp',
+    'css-lsp',
+    'json-lsp',
+    'emmet-language-server',
+    'rust-analyzer',
+    'clangd',
+    'gopls',
+    'pyright',
+}
 
 require('mason').setup()
 require('mason-lspconfig').setup({
@@ -41,21 +65,89 @@ vim.lsp.config('*', {
     capabilities = capabilities,
 })
 
-vim.lsp.config('ts_ls', {
+vim.lsp.config('vtsls', {
     capabilities = capabilities,
-    settings = {
-        completions = {
-            completeFunctionCalls = true,
-        },
-    },
     root_markers = { 'package.json', 'tsconfig.json', '.git' },
-    init_options = {
-        preferences = {
-            disableSuggestions = false,
-            importModuleSpecifierPreference = 'shortest',
-            quotePreference = 'auto',
+    settings = {
+        vtsls = {
+            enableMoveToFileCodeAction = true,
+            autoUseWorkspaceTsdk = true,
+        },
+        typescript = {
+            suggest = {
+                completeFunctionCalls = true,
+            },
+            inlayHints = {
+                parameterNames = { enabled = 'literals' },
+                parameterTypes = { enabled = true },
+                variableTypes = { enabled = false },
+                propertyDeclarationTypes = { enabled = true },
+                functionLikeReturnTypes = { enabled = true },
+                enumMemberValues = { enabled = true },
+            },
+        },
+        javascript = {
+            suggest = {
+                completeFunctionCalls = true,
+            },
         },
     },
+})
+
+vim.lsp.config('eslint', {
+    capabilities = capabilities,
+    root_markers = {
+        'eslint.config.js',
+        'eslint.config.mjs',
+        'eslint.config.cjs',
+        '.eslintrc',
+        '.eslintrc.js',
+        '.eslintrc.cjs',
+        '.eslintrc.json',
+        'package.json',
+        '.git',
+    },
+})
+
+vim.lsp.config('tailwindcss', {
+    capabilities = capabilities,
+    root_markers = {
+        'tailwind.config.js',
+        'tailwind.config.cjs',
+        'tailwind.config.ts',
+        'postcss.config.js',
+        'package.json',
+        '.git',
+    },
+})
+
+vim.lsp.config('html', {
+    capabilities = capabilities,
+    root_markers = { 'package.json', '.git' },
+})
+
+vim.lsp.config('cssls', {
+    capabilities = capabilities,
+    root_markers = { 'package.json', '.git' },
+})
+
+vim.lsp.config('jsonls', {
+    capabilities = capabilities,
+    root_markers = { 'package.json', '.git' },
+})
+
+vim.lsp.config('emmet_language_server', {
+    capabilities = capabilities,
+    filetypes = {
+        'css',
+        'eruby',
+        'html',
+        'less',
+        'sass',
+        'scss',
+        'pug',
+    },
+    root_markers = { 'package.json', '.git' },
 })
 
 vim.lsp.config('rust_analyzer', {

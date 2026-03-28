@@ -105,6 +105,64 @@ autocmd("BufWritePre", {
   end,
 })
 
+local web_indent_group = augroup('WebIndent', { clear = true })
+autocmd('FileType', {
+  group = web_indent_group,
+  pattern = { 'javascript', 'javascriptreact', 'typescript', 'typescriptreact' },
+  callback = function()
+    vim.bo.shiftwidth = 2
+    vim.bo.tabstop = 2
+    vim.bo.softtabstop = 2
+  end,
+})
+
+local web_format_group = augroup('WebFormatOnSave', { clear = true })
+autocmd('BufWritePre', {
+  group = web_format_group,
+  pattern = { '*.js', '*.jsx', '*.ts', '*.tsx' },
+  callback = function(args)
+    local bufnr = args.buf
+
+    local eslint_clients = vim.lsp.get_clients({ bufnr = bufnr, name = 'eslint' })
+    if #eslint_clients > 0 then
+      local code_action_params = {
+        context = {
+          only = { 'source.fixAll.eslint', 'source.organizeImports' },
+          diagnostics = vim.diagnostic.get(bufnr),
+        },
+        range = {
+          start = { line = 0, character = 0 },
+          ['end'] = { line = vim.api.nvim_buf_line_count(bufnr), character = 0 },
+        },
+      }
+
+      local result = vim.lsp.buf_request_sync(bufnr, 'textDocument/codeAction', code_action_params, 1200)
+      for client_id, res in pairs(result or {}) do
+        for _, action in ipairs(res.result or {}) do
+          if action.edit then
+            vim.lsp.util.apply_workspace_edit(action.edit, 'utf-8')
+          end
+          if action.command then
+            local client = vim.lsp.get_client_by_id(client_id)
+            if client then
+              client:exec_cmd(action.command, { bufnr = bufnr })
+            end
+          end
+        end
+      end
+    end
+
+    vim.lsp.buf.format({
+      bufnr = bufnr,
+      async = false,
+      timeout_ms = 2000,
+      filter = function(client)
+        return client.name ~= 'vtsls'
+      end,
+    })
+  end,
+})
+
 local recording_status_group = augroup('RecordingStatusline', { clear = true })
 autocmd('RecordingEnter', {
   group = recording_status_group,

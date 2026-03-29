@@ -31,3 +31,4 @@ require("vague").setup({
 })
 vim.cmd.colorscheme "vague"
 vim.o.cmdheight = 0
+

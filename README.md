@@ -1,1 +1,2 @@
-# NVIM CONFIG OPTIMIZED FOR HTML 
+# MINI NVIM Based Config
+still not complete

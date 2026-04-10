@@ -1,8 +1,7 @@
 vim.opt.number = true
 vim.opt.relativenumber = false
 vim.opt.cursorline = true
-vim.opt.numberwidth = 3
-vim.opt.signcolumn = "yes:2"
+vim.opt.signcolumn = "yes"
 vim.opt.pumheight = 10
 vim.opt.winborder = "rounded"
 vim.opt.list = false
@@ -16,22 +15,15 @@ vim.opt.expandtab = true
 vim.opt.tabstop = 4
 vim.opt.shiftwidth = 4
 vim.opt.softtabstop = 4
-vim.opt.scrolloff = 10
+vim.opt.scrolloff = 8
 vim.opt.completeopt = { "menuone", "popup", "nearest", "noinsert" }
 vim.opt.splitright = true
 vim.opt.splitbelow = true
 vim.opt.updatetime = 200
-vim.opt.timeoutlen = 1000
+vim.opt.timeoutlen = 300
 vim.opt.inccommand = "split"
 vim.opt.pummaxwidth = 80
 vim.opt.pumborder = "rounded"
 vim.opt.diffopt:append({ "inline:char", "indent-heuristic" })
 
 vim.opt.termguicolors = true
-
--- Folding
-vim.opt.foldmethod = "expr"
-vim.opt.foldexpr = "v:lua.vim.treesitter.foldexpr()"
-vim.opt.foldenable = true
-vim.opt.foldlevel = 99
-vim.opt.foldlevelstart = 99

@@ -5,10 +5,9 @@ require('options')
 
 vim.pack.add({
     { src = "https://github.com/nvim-mini/mini.nvim" },
-
     { src = "https://github.com/nvim-treesitter/nvim-treesitter" },
-    { src = "https://github.com/vague-theme/vague.nvim" },
 
+    { src = "https://github.com/vague-theme/vague.nvim" },
     { src = "https://github.com/folke/flash.nvim" },
     { src = "https://github.com/mason-org/mason.nvim" },
     { src = "https://github.com/neovim/nvim-lspconfig" },
@@ -31,4 +30,5 @@ require("vague").setup({
 })
 vim.cmd.colorscheme "vague"
 vim.o.cmdheight = 0
-
+vim.o.laststatus = 3
+require('starter')

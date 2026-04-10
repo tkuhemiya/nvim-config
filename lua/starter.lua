@@ -36,8 +36,25 @@ starter.setup({
 ██   ██ ██▄▄▄ ▀███▀  ▀██▀  ██ ██   ██
       ]],
 
+    items = {
+        starter.sections.recent_files(3, false),
+
+        { name = 'Find File',    action = 'Pick files',    section = 'Start' },
+        { name = 'New File',     action = 'enew',          section = 'Start' },
+        { name = 'Recent Files', action = 'Pick oldfiles', section = 'Start' },
+        { name = 'Quit',         action = 'qa',            section = 'Start' },
+
+        -- starter.sections.builtin_actions(),
+    },
+
+    content_hooks = {
+        starter.gen_hook.adding_bullet('» '),
+        starter.gen_hook.aligning('center', 'center'),
+    },
 
     footer = '(✜︵✜)',
+
+    autoopen = true,
 })
 
 vim.defer_fn(animate_header_colors, 75)

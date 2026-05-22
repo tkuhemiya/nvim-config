@@ -9,9 +9,9 @@ local map = vim.keymap.set
 vim.g.mapleader = " "
 
 -- Buffer / window management
-map({ "n" }, "<leader>w", "<Cmd>:w<CR>", { desc = "Write buffer" })
-map({ "n" }, "<leader>q", "<Cmd>:quit<CR>", { desc = "Close window" })
-map({ "n" }, "<leader>Q", "<Cmd>:wqa<CR>", { desc = "Write all, quit" })
+map({ "n" }, "<leader>w", "<Cmd>w<CR>", { desc = "Write buffer" })
+map({ "n" }, "<leader>q", "<Cmd>q<CR>", { desc = "Close window" })
+map({ "n" }, "<leader>Q", "<Cmd>wqa<CR>", { desc = "Write all, quit" })
 map({ "n" }, "<leader>e", function() Minifile.open() end, { desc = "Open mini.files" })
 map({ "n" }, "<C-q>", ":copen<CR>", { desc = "Open quickfix", silent = true })
 map({ "n", "t" }, "<Leader>x", "<Cmd>tabclose<CR>", { desc = "Close current tab" })

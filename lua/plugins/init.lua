@@ -1,3 +1,4 @@
+require("plugins.treesitter")
 require("plugins.lsp")
 require("plugins.mini-completion")
 require("plugins.mini-icons")
@@ -14,6 +15,9 @@ require("plugins.telescope")
 require("plugins.actions-preview")
 require("plugins.luasnip")
 require("plugins.diffview")
+require("plugins.lualine")
+require("plugins.noice")
+require("plugins.render-markdown")
 
 require('marks').setup()
 

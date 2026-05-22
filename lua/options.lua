@@ -13,7 +13,9 @@ vim.api.nvim_create_autocmd("FileChangedShellPost", {
 })
 
 vim.opt.mouse = "a"
-vim.opt.wrap = false
+vim.opt.wrap = true
+vim.opt.linebreak = true      -- wrap at word boundaries
+vim.opt.breakindent = true    -- preserve indent on wrapped lines
 vim.opt.scrolloff = 10
 vim.opt.undofile = true
 vim.opt.splitbelow = true
@@ -29,7 +31,8 @@ vim.opt.showmode = false     -- statusline does this
 vim.opt.cursorcolumn = false -- fix jumps
 vim.opt.signcolumn = "yes"   -- gutter never shifts
 vim.opt.termguicolors = true -- 24-bit color baby
-vim.opt.showtabline = 2      -- always show tabs
+vim.opt.showtabline = 0      -- lualine handles tabs in statusline
+vim.opt.laststatus = 3       -- global statusline shared across splits
 vim.opt.winborder = "rounded"
 
 -- Search

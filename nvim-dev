@@ -1,4 +1,5 @@
 #!/bin/bash
+
 # Development wrapper for isolated nvim config testing
 # Usage: ./nvim-dev [file]
 

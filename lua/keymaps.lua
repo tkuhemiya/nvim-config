@@ -38,7 +38,7 @@ map({ "n", "x" }, "H", "^", { desc = "Start of line" })
 -- Search navigation (centered)
 vim.keymap.set("n", "n", "nzz", { desc = "Next result centered" })
 vim.keymap.set("n", "N", "Nzz", { desc = "Prev result centered" })
-vim.keymap.set("n", "<ESC>", ":nohlsearch<CR>", { desc = "Clear highlights" })
+--vim.keymap.set("n", "<ESC>", ":nohlsearch<CR>", { desc = "Clear highlights" })
 
 -- Find / replace
 vim.keymap.set("n", "S", function()

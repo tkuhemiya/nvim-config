@@ -29,6 +29,12 @@ vim.api.nvim_create_autocmd("LspAttach", {
   end,
 })
 
+-- gleam (not managed by Mason; requires `gleam` binary on PATH)
+vim.lsp.config("gleam", {
+  capabilities = capabilities,
+})
+vim.lsp.enable("gleam")
+
 -- lua_ls specific config
 vim.lsp.config("lua_ls", {
   capabilities = capabilities,

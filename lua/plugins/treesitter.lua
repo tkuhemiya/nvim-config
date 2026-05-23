@@ -2,7 +2,7 @@
 --   brew install tree-sitter
 --
 -- After installing it, run this once in Neovim:
---   :TSInstall cpp go gomod gowork gosum javascript typescript rust python zig
+--   :TSInstall cpp go gomod gowork gosum javascript typescript rust python zig gleam
 
 -- You can add treesitter-specific settings here if needed.
 -- In Neovim 0.12, syntax highlighting is enabled automatically

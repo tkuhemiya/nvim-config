@@ -16,7 +16,6 @@ require("plugins.actions-preview")
 require("plugins.luasnip")
 require("plugins.diffview")
 require("plugins.lualine")
-require("plugins.noice")
 require("plugins.render-markdown")
 require("plugins.image")
 

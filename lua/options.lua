@@ -39,11 +39,14 @@ vim.opt.winborder = "rounded"
 vim.opt.ignorecase = true
 vim.opt.smartcase = true
 
+-- Hide bottom cmdline area when idle
+vim.opt.cmdheight = 0
+
 -- Completion popup menu
 vim.opt.pumheight = 10       -- max 10 items at a time
 vim.opt.pummaxwidth = 80
 vim.opt.pumborder = "rounded"
-vim.opt.completeopt = { "menuone", "popup", "nearest", "noinsert" }
+vim.opt.completeopt = { "menuone", "noinsert", "noselect" }
 
 -- LSP / syntax highlights
 vim.cmd([[hi @lsp.type.number gui=bold]])

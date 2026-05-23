@@ -46,7 +46,7 @@ vim.opt.cmdheight = 0
 vim.opt.pumheight = 10       -- max 10 items at a time
 vim.opt.pummaxwidth = 80
 vim.opt.pumborder = "rounded"
-vim.opt.completeopt = { "menuone", "noinsert", "noselect" }
+vim.opt.completeopt = { "menuone", "noinsert" }
 
 -- LSP / syntax highlights
 vim.cmd([[hi @lsp.type.number gui=bold]])

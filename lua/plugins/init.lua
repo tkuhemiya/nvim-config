@@ -18,6 +18,7 @@ require("plugins.diffview")
 require("plugins.lualine")
 require("plugins.noice")
 require("plugins.render-markdown")
+require("plugins.image")
 
 require('marks').setup()
 

@@ -1,5 +1,5 @@
-local servers = { 'ts_ls', 'rust_analyzer', 'clangd', 'gopls' }
-local mason_tools = { 'typescript-language-server', 'rust-analyzer', 'clangd', 'gopls' }
+local servers = { 'ts_ls', 'rust_analyzer', 'clangd', 'gopls', 'pyright' }
+local mason_tools = { 'typescript-language-server', 'rust-analyzer', 'clangd', 'gopls', 'pyright' }
 
 require('mason').setup()
 require('mason-lspconfig').setup({
@@ -55,6 +55,20 @@ vim.lsp.config("lua_ls", {
       },
       telemetry = {
         enable = false,
+      },
+    },
+  },
+})
+
+-- pyright specific config
+vim.lsp.config("pyright", {
+  capabilities = capabilities,
+  settings = {
+    python = {
+      analysis = {
+        typeCheckingMode = "basic",
+        autoSearchPaths = true,
+        useLibraryCodeForTypes = true,
       },
     },
   },

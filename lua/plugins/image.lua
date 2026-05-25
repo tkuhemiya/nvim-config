@@ -3,6 +3,7 @@ require("image").setup({
 	integrations = {
 		markdown = { enabled = false },
 		neorg = { enabled = false },
+		typst = { enabled = false },
 	},
 	max_width = 100,
 	max_height = 30,

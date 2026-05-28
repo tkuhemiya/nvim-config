@@ -4,6 +4,7 @@ vim.pack.add({
 	{ src = "https://github.com/vague-theme/vague.nvim" },
 	{ src = "https://github.com/nvim-pack/nvim-spectre" },
 	{ src = "https://github.com/nvim-mini/mini.nvim" },
+	{ src = "https://github.com/nvim-mini/mini.pairs" },
 	{ src = "https://github.com/chentoast/marks.nvim" },
 	{ src = "https://github.com/nvim-mini/mini.files" },
 	{ src = "https://github.com/aznhe21/actions-preview.nvim" },
